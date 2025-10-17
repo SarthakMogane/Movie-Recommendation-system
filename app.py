@@ -14,7 +14,8 @@ def fetch_poster(movies_id):
 
     return  "https://image.tmdb.org/t/p/w500/"+data['poster_path']
 
-similarity = pickle.load(open("similarity.pkl", "rb"))
+# similarity = pickle.load(open("similarity.pkl", "rb"))
+hybrid_similarity =pickle.load(open('hybrid_similarity.pkl','rb'))
 
 def recommend(movie):
     '''
@@ -22,7 +23,8 @@ def recommend(movie):
 
     '''
     movie_index = movies[movies['title'] == movie].index[0]
-    distance = similarity[movie_index]
+    # distance = similarity[movie_index]
+    distance = hybrid_similarity[movie_index]
     recommend_list = sorted(list(enumerate(distance)), reverse=True, key=lambda x: x[1])[1:6]
 
     recommended_movies = []

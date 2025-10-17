@@ -2,3 +2,4 @@
 .venv/
 movies.pkl
 similarity.pkl
+hybrid_similarity.pkl
