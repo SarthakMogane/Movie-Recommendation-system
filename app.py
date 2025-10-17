@@ -3,6 +3,7 @@ import pickle
 import pandas as pd
 import requests
 import os
+import time
 
 def fetch_poster(movies_id):
     '''
@@ -53,6 +54,7 @@ selected_movie_name = st.selectbox(
 
 
 if st.button("Recommend Movie"):
+    start_time = time.perf_counter()
     names, poster = recommend(selected_movie_name)
     col1, col2, col3, col4, col5 = st.columns(5)
 
@@ -87,6 +89,9 @@ if st.button("Recommend Movie"):
             )
             
             st.image(poster[i], use_container_width=True)
+    end_time = time.perf_counter()
+    elapsed_time = end_time - start_time
+    st.text(f"Elapsed time: {elapsed_time:.4f} seconds")
 
 
 
